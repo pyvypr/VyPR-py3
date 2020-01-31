@@ -990,7 +990,6 @@ if __name__ == "__main__":
 
                 reachability_map = construct_reachability_map(scfg)
                 bindings = compute_binding_space(formula_structure, scfg, reachability_map)
-                print(bindings)
 
                 logger.log("Set of static bindings computed is")
                 logger.log(str(bindings))
