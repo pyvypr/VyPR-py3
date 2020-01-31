@@ -36,7 +36,7 @@ class MonitoringLog(object):
         if not (os.path.isdir("vypr_monitoring_logs")):
             os.mkdir("vypr_monitoring_logs")
         self.log_file_name = "vypr_monitoring_logs/%s" \
-                             % str(datetime.datetime.now()). \
+                             % str(datetime.datetime.utcnow()). \
                                  replace(" ", "_").replace(":", "_").replace(".", "_").replace("-", "_")
         self.handle = None
 
@@ -49,7 +49,7 @@ class MonitoringLog(object):
 
     def log(self, message):
         if self.handle:
-            message = "[VyPR monitoring - %s] %s" % (str(datetime.datetime.now()), message)
+            message = "[VyPR monitoring - %s] %s" % (str(datetime.datetime.utcnow()), message)
             self.handle.write("%s\n" % message)
             # flush the contents of the file to disk - this way we get a log even with an unhandled exception
             self.handle.flush()
@@ -334,7 +334,7 @@ def consumption_thread_function(verification_obj):
 
                             old_instantiation_time = list(monitor._monitor_instantiation_time)
                             updated_instantiation_time = tuple(
-                                old_instantiation_time[:bind_variable_index] + [datetime.datetime.now()])
+                                old_instantiation_time[:bind_variable_index] + [datetime.datetime.utcnow()])
                             new_monitor = formula_tree.new_monitor(formula_structure.get_formula_instance())
                             new_monitors.append(new_monitor)
 
@@ -371,7 +371,7 @@ def consumption_thread_function(verification_obj):
                         vypr_output("    Updating existing monitor timestamp sequence")
                         # extend the monitor's timestamp sequence
                         tmp_sequence = list(monitor._monitor_instantiation_time)
-                        tmp_sequence.append(datetime.datetime.now())
+                        tmp_sequence.append(datetime.datetime.utcnow())
                         monitor._monitor_instantiation_time = tuple(tmp_sequence)
 
                 # add the new monitors
@@ -569,7 +569,7 @@ class Verification(object):
                 import datetime
                 # this function runs inside a request, so flask.g exists
                 # we store just the request time
-                flask.g.request_time = datetime.datetime.now()
+                flask.g.request_time = datetime.datetime.utcnow()
 
             flask_object.before_request(prepare_vypr)
 
