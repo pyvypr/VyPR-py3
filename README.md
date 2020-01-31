@@ -17,16 +17,16 @@ Once you've cloned the repository (into the root of the project for which you wa
 
 To attach VyPR monitoring to your project, use
 
-``
+```
 from VyPR import Monitor
 vypr = Monitor()
-``
+```
 
 and then, wherever you initialise your Flask application object, add
 
-``
+```
 vypr.initialise(flask_app)
-``
+```
 
 To instrument and monitor:
 
