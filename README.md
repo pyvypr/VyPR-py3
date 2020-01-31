@@ -8,7 +8,7 @@ Requires the Python 3 version of VyPR Server (http://github.com/pyvypr/VyPRServe
 
 *Not needed if VyPR is being cloned for VyPR server.*
 
-Once you've cloned the depository (into the root of the project for which you want to do monitoring):
+Once you've cloned the repository (into the root of the project for which you want to do monitoring):
 
 * Write your queries in the file `VyPR_queries.py` in the root of your project.  See the examples in `sample_input/queries/` for ideas.
 * Write your configuration in the file `vypr.config`.  See the examples in `sample_input/vypr_config/` for ideas.
